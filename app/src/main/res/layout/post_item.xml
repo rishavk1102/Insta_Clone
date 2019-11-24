@@ -17,8 +17,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="10dp"
-                android:id="@+id/image_profile"
-                android:src="@mipmap/ic_launcher"/>
+                android:id="@+id/image_profile"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -27,16 +26,15 @@
                 android:layout_gravity="center_vertical"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="@color/colorPrimaryDark"
-                android:text="username"/>
+                android:textColor="@color/colorPrimaryDark"/>
 
         </LinearLayout>
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/post_image"
-            android:src="@mipmap/ic_launcher"/>
+            android:layout_height="350dp"
+            android:scaleType="fitXY"
+            android:id="@+id/post_image"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -71,7 +69,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textStyle="bold"
-            android:text="10 likes"
             android:id="@+id/likes"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -80,7 +77,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textStyle="bold"
-            android:text="username"
             android:id="@+id/publisher"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -89,7 +85,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:id="@+id/description"
-            android:text="description"
             android:textColor="@color/colorPrimaryDark"/>
 
         <TextView
@@ -99,7 +94,6 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
             android:id="@+id/comments"
-            android:text="View all 20 comments"
             android:textColor="@color/colorAccent"/>
 
     </LinearLayout>
