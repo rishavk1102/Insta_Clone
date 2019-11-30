@@ -1,15 +1,18 @@
 package com.rishav.instaclone.Adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.rishav.instaclone.Fragment.PostDetailFragment;
 import com.rishav.instaclone.Model.Post;
 import com.rishav.instaclone.R;
 
@@ -35,8 +38,20 @@ public class MyFotoAdapter extends RecyclerView.Adapter<MyFotoAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Post post = mPosts.get(position);
+        final Post post = mPosts.get(position);
         Glide.with(context).load(post.getPostimage()).into(holder.post_image);
+
+        holder.post_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences.Editor editor = context.getSharedPreferences("PREFS" , Context.MODE_PRIVATE).edit();
+                editor.putString("postid" , post.getPostid());
+                editor.apply();
+
+                ((FragmentActivity)context).getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new PostDetailFragment()).commit();
+            }
+        });
 
     }
 
