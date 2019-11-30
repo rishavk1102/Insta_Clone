@@ -1,6 +1,7 @@
 package com.rishav.instaclone.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rishav.instaclone.Adapter.MyFotoAdapter;
+import com.rishav.instaclone.EditProfileActivity;
 import com.rishav.instaclone.Model.Post;
 import com.rishav.instaclone.Model.User;
 import com.rishav.instaclone.R;
@@ -120,7 +122,7 @@ public class ProfileFragment extends Fragment {
                 String btn = editprofile.getText().toString();
 
                 if (btn.equals("Edit Profile")){
-                    //goto edit profile
+                    startActivity(new Intent(getContext() , EditProfileActivity.class));
                 } else if (btn.equals("follow")){
                     FirebaseDatabase.getInstance().getReference().child("Follow").child(firebaseUser.getUid())
                             .child("following").child(profileid).setValue(true);
