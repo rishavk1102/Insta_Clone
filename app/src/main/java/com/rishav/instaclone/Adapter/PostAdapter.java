@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -59,7 +61,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final Post post = mPost.get(position);
 
-        Picasso.get().load(post.getPostimage()).into(holder.post_image);
+        Picasso.get().load(post.getPostimage()).placeholder(R.drawable.placeholder).into(holder.post_image);
 
         if (post.getDescription().equals("")){
             holder.description.setVisibility(View.GONE);

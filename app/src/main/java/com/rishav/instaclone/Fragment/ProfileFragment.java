@@ -31,6 +31,7 @@ import com.rishav.instaclone.EditProfileActivity;
 import com.rishav.instaclone.FollowersActivity;
 import com.rishav.instaclone.Model.Post;
 import com.rishav.instaclone.Model.User;
+import com.rishav.instaclone.OptionsActivity;
 import com.rishav.instaclone.R;
 import com.squareup.picasso.Picasso;
 
@@ -143,6 +144,14 @@ public class ProfileFragment extends Fragment {
 
                 }
 
+            }
+        });
+
+        options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext() , OptionsActivity.class);
+                startActivity(intent);
             }
         });
 
