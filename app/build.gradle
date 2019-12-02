@@ -38,6 +38,8 @@ dependencies {
 
     implementation 'com.rengwuxian.materialedittext:library:2.1.4'
 
+    implementation 'com.github.shts:StoriesProgressView:3.0.0'
+
     implementation 'com.google.firebase:firebase-auth:16.0.4'
     implementation 'com.google.firebase:firebase-database:16.0.4'
     implementation 'com.google.firebase:firebase-storage:16.0.4'

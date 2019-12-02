@@ -19,7 +19,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rishav.instaclone.Adapter.PostAdapter;
+import com.rishav.instaclone.Adapter.StoryAdapter;
 import com.rishav.instaclone.Model.Post;
+import com.rishav.instaclone.Model.Story;
 import com.rishav.instaclone.R;
 
 import java.util.ArrayList;
@@ -30,6 +32,10 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     private PostAdapter postAdapter;
     private List<Post> postList;
+
+    private RecyclerView recyclerView_story;
+    private StoryAdapter storyAdapter;
+    private List<Story> storyList;
 
     private List<String> followingList;
 
@@ -48,8 +54,16 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         postList = new ArrayList<>();
         postAdapter = new PostAdapter(getContext() , postList);
-
         recyclerView.setAdapter(postAdapter);
+
+        recyclerView_story = view.findViewById(R.id.recycler_view_story);
+        recyclerView_story.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext() ,
+                LinearLayoutManager.HORIZONTAL , false);
+        recyclerView_story.setLayoutManager(linearLayoutManager1);
+        storyList = new ArrayList<>();
+        storyAdapter = new StoryAdapter(getContext() , storyList);
+        recyclerView_story.setAdapter(storyAdapter);
 
         progressBar = view.findViewById(R.id.progress_circular);
 
@@ -74,6 +88,7 @@ public class HomeFragment extends Fragment {
                 }
 
                 readPosts();
+                readStory();
             }
 
             @Override
@@ -103,6 +118,36 @@ public class HomeFragment extends Fragment {
 
                 postAdapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void readStory() {
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Story");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                long timecurrent = System.currentTimeMillis();
+                storyList.clear();
+                storyList.add(new Story("" , 0 , 0 , "" ,FirebaseAuth.getInstance().getCurrentUser().getUid()));
+                for (String id : followingList){
+                    int countStory = 0;
+                    Story story = null;
+                    for (DataSnapshot snapshot : dataSnapshot.child(id).getChildren()){
+                        story = snapshot.getValue(Story.class);
+                        if (timecurrent > story.getTimestart() && timecurrent < story.getTimeend()){
+                            countStory++;
+                        }
+                    }
+                    if (countStory > 0)
+                        storyList.add(story);
+                }
+                storyAdapter.notifyDataSetChanged();
             }
 
             @Override
