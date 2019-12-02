@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rishav.instaclone.Adapter.MyFotoAdapter;
 import com.rishav.instaclone.EditProfileActivity;
+import com.rishav.instaclone.FollowersActivity;
 import com.rishav.instaclone.Model.Post;
 import com.rishav.instaclone.Model.User;
 import com.rishav.instaclone.R;
@@ -150,6 +151,26 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 recyclerView.setVisibility(View.GONE);
                 recyclerView_saves.setVisibility(View.VISIBLE);
+            }
+        });
+
+        followers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext() , FollowersActivity.class);
+                intent.putExtra("id" , profileid);
+                intent.putExtra("title" , "Followers");
+                startActivity(intent);
+            }
+        });
+
+        following.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext() , FollowersActivity.class);
+                intent.putExtra("id" , profileid);
+                intent.putExtra("title" , "Following");
+                startActivity(intent);
             }
         });
 
