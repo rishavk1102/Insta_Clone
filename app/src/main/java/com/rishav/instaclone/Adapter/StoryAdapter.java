@@ -23,6 +23,7 @@ import com.rishav.instaclone.AddStoryActivity;
 import com.rishav.instaclone.Model.Story;
 import com.rishav.instaclone.Model.User;
 import com.rishav.instaclone.R;
+import com.rishav.instaclone.StoryActivity;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -52,7 +53,7 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
-        Story story = mStory.get(position);
+        final Story story = mStory.get(position);
         userInfo(holder , story.getUserid() , position);
 
         if (holder.getAdapterPosition() != 0){
@@ -69,7 +70,9 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder>{
                 if (holder.getAdapterPosition() == 0){
                     myStory(holder.addstory_text , holder.story_plus , true);
                 } else {
-                    //TODO : go to story
+                    Intent intent = new Intent(mContext , StoryActivity.class);
+                    intent.putExtra("userid" , story.getUserid());
+                    mContext.startActivity(intent);
                 }
             }
         });
@@ -150,7 +153,10 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder>{
                                 new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        //TODO : go to story
+                                        Intent intent = new Intent(mContext , StoryActivity.class);
+                                        intent.putExtra("userid" , FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                        mContext.startActivity(intent);
+                                        dialog.dismiss();
                                     }
                                 });
 
