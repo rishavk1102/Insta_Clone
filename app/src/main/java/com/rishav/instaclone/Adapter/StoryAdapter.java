@@ -1,6 +1,8 @@
 package com.rishav.instaclone.Adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -16,6 +19,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rishav.instaclone.AddStoryActivity;
 import com.rishav.instaclone.Model.Story;
 import com.rishav.instaclone.Model.User;
 import com.rishav.instaclone.R;
@@ -140,7 +144,31 @@ public class StoryAdapter extends RecyclerView.Adapter<StoryAdapter.ViewHolder>{
                 }
 
                 if (click){
-                    //TODO : Show alert dialog
+                    if (count > 0){
+                        AlertDialog alertDialog = new AlertDialog.Builder(mContext).create();
+                        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "View Story",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        //TODO : go to story
+                                    }
+                                });
+
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Add Story",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Intent intent = new Intent(mContext , AddStoryActivity.class);
+                                        mContext.startActivity(intent);
+                                        dialog.dismiss();
+                                    }
+                                });
+
+                        alertDialog.show();
+                    } else {
+                        Intent intent = new Intent(mContext , AddStoryActivity.class);
+                        mContext.startActivity(intent);
+                    }
                 } else {
                     if (count > 0){
                         textView.setText("My Story");
