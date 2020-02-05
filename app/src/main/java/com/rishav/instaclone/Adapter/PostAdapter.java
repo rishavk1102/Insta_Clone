@@ -29,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.hendraanggrian.appcompat.widget.SocialTextView;
 import com.rishav.instaclone.CommentsActivity;
 import com.rishav.instaclone.FollowersActivity;
 import com.rishav.instaclone.Fragment.PostDetailFragment;
@@ -251,7 +252,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
         public TextView username;
         public TextView likes;
         public TextView publisher;
-        public TextView description;
+        public SocialTextView description;
         public TextView comments;
 
         public ViewHolder(@NonNull View itemView) {

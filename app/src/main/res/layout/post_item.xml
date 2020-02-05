@@ -99,7 +99,7 @@
             android:id="@+id/publisher"
             android:textColor="@color/colorPrimaryDark"/>
 
-        <TextView
+        <com.hendraanggrian.appcompat.widget.SocialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"

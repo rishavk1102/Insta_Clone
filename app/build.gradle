@@ -43,6 +43,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.0.4'
     implementation 'com.google.firebase:firebase-database:16.0.4'
     implementation 'com.google.firebase:firebase-storage:16.0.4'
+
+    implementation "com.hendraanggrian.appcompat:socialview:0.2"
+    implementation "com.hendraanggrian.appcompat:socialview-commons:0.2"
+    implementation 'com.google.code.gson:gson:2.8.6'
+
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
