@@ -38,35 +38,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/bar"
-        android:id="@+id/recycler_view"/>
+        android:id="@+id/recycler_view_users"/>
 
-    <LinearLayout
-        android:id="@+id/tag_layout"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/bar"
-        android:layout_marginStart="15dp"
-        android:orientation="vertical"
-        android:layout_centerVertical="true"
-        android:visibility="gone"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/hash_tag"
-            android:text="#tag"
-            android:maxLines="1"
-            android:textStyle="bold"
-            android:textColor="@color/design_default_color_primary_dark"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/no_of_posts"
-            android:text="123 posts"
-            android:maxLines="1"/>
-
-    </LinearLayout>
+        android:layout_below="@id/recycler_view_users"
+        android:id="@+id/recycler_view_tags"/>
 
 </RelativeLayout>
