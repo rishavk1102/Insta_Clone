@@ -64,7 +64,10 @@ public class EditProfileActivity extends AppCompatActivity {
         tv_change = findViewById(R.id.tv_change);
         fullname = findViewById(R.id.fullname);
         username = findViewById(R.id.username);
+        username.setEnabled(false);
         bio = findViewById(R.id.bio);
+
+        Toast.makeText(EditProfileActivity.this, "You can't change your username! Contact admin.", Toast.LENGTH_SHORT).show();
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         storageRef = FirebaseStorage.getInstance().getReference("uploads");
