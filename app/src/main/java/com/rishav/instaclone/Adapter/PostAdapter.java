@@ -198,29 +198,25 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.ViewHolder> {
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()){
-                            case R.id.edit :
-                                editPost(post.getPostid());
-                                return true;
-
-                            case R.id.delete :
-                                FirebaseDatabase.getInstance().getReference("Posts")
-                                        .child(post.getPostid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        if (task.isSuccessful()){
-                                            Toast.makeText(mContext, "Deleted!", Toast.LENGTH_SHORT).show();
+                        if (item.getItemId() == R.id.edit) {
+                            editPost(post.getPostid());
+                            return true;
+                        } else if (item.getItemId() == R.id.delete) {
+                            FirebaseDatabase.getInstance().getReference("Posts")
+                                    .child(post.getPostid()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()){
+                                                Toast.makeText(mContext, "Deleted!", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
-                                    }
-                                });
-                                return true;
-
-                            case R.id.report :
-                                Toast.makeText(mContext, "Report Sent!", Toast.LENGTH_SHORT).show();
-                                return true;
-
-                            default:
-                                return false;
+                                    });
+                            return true;
+                        } else if (item.getItemId() == R.id.report) {
+                            Toast.makeText(mContext, "Report Sent!", Toast.LENGTH_SHORT).show();
+                            return true;
+                        } else {
+                            return false;
                         }
                     }
                 });
